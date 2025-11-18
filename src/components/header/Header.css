@@ -1,0 +1,38 @@
+.app-header {
+  display: flex;
+  justify-content: space-between; /* Title left, buttons right */
+  align-items: center;
+  background-color: #f0e0cb;
+  padding: 8px 16px;
+}
+
+/* Title styling */
+.app-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3e2723;
+}
+
+/* Wrap both buttons together */
+.header-buttons {
+  display: flex;
+  gap: 10px; /* spacing between buttons */
+  margin-left: auto; /* ✅ ensures they stay at the right */
+}
+
+/* Buttons */
+.home-button,
+.register-button {
+  padding: 8px 16px;
+  background-color: #a67b5b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.home-button:hover,
+.register-button:hover {
+  background-color: #8b5e3c;
+}
