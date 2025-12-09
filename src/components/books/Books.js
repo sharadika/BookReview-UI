@@ -8,6 +8,8 @@ import {
 } from "../../services/BookService";
 import AddBookForm from "./AddBookForm";
 import BookList from "./BookList";
+import { useAuthRoles } from "../../auth/hooks/useAuthRoles"; 
+import { useMsal } from "@azure/msal-react";
 
 const Books = () => {
   const [filters, setFilters] = useState({
@@ -25,6 +27,8 @@ const Books = () => {
 
   const [filteredBooks, setFilteredBooks] = useState([]); // Filtered results
   const [noResultMessage, setNoResultMessage] = useState(""); // Message from API
+  const { isAdmin } = useAuthRoles();
+  //const { accounts } = useMsal();
 
   // Load dropdowns
   useEffect(() => {
@@ -86,12 +90,13 @@ const Books = () => {
     setNoResultMessage("");
   };
 
+    //console.log("@@@",isAdmin, accounts[0].username);
   return (
     <div className="books-container">
       <div className="filter-panel">
-        <button className="add-book-btn" onClick={() => setShowForm(true)}>
+        {isAdmin &&<button className="add-book-btn" onClick={() => setShowForm(true)}>
           Add New Book
-        </button>
+        </button>}
         <h3>Filters</h3>
 
         {/* Genre */}

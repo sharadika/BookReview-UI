@@ -22,8 +22,7 @@
 }
 
 /* Buttons */
-.home-button,
-.register-button {
+.home-button, .logout-button {
   padding: 8px 16px;
   background-color: #a67b5b;
   color: white;
@@ -32,7 +31,6 @@
   cursor: pointer;
 }
 
-.home-button:hover,
-.register-button:hover {
+.home-button:hover, .logout-button:hover {
   background-color: #8b5e3c;
 }

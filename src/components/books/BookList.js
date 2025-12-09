@@ -5,6 +5,7 @@ import EditBookModal from "./EditBookModel";
 import DeleteBookModal from "./BookDeleteModal";
 import { getBooksPaged, getAuthors, getGenres, getPublishers, WEB_API_URL } from "../../services/BookService";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { useAuthRoles } from "../../auth/hooks/useAuthRoles"; 
 
 const BookList = ({ filteredBooks = [], noResultMessage = "" }) => {
   const [books, setBooks] = useState([]);
@@ -24,6 +25,8 @@ const BookList = ({ filteredBooks = [], noResultMessage = "" }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleteBookId, setDeleteBookId] = useState(null);
   const [deleteBookName, setDeleteBookName] = useState("");
+
+  const { isAdmin } = useAuthRoles();
 
   // 🔹 Debounce search input
   useEffect(() => {
@@ -128,8 +131,8 @@ const BookList = ({ filteredBooks = [], noResultMessage = "" }) => {
                 <p>{book.publisherName}</p>
                 <div className="book-actions">
                   <button onClick={() => handleView(book.id)} title="View"><FaEye /></button>
-                  <button onClick={() => handleEdit(book.id)} title="Edit"><FaEdit /></button>
-                  <button onClick={() => handleDeleteClick(book)} title="Delete"><FaTrash /></button>
+                  {isAdmin &&<button onClick={() => handleEdit(book.id)} title="Edit"><FaEdit /></button>}
+                  {isAdmin &&<button onClick={() => handleDeleteClick(book)} title="Delete"><FaTrash /></button>}
                 </div>
               </div>
             ))}
